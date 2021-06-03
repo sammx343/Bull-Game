@@ -10,31 +10,30 @@ public class BullController : MonoBehaviour
   [SerializeField]
   private GameObject _ball;
   [SerializeField] private bool _ballIsRunning;
-
-  [SerializeField]
-  private float bullRotationSpeed = 1f;
-  [SerializeField]
-  private float bullMovementSpeed = 10f;
-  private CharacterController _characterController;
   private Rigidbody _rigidbody;
   private Animator _animator;
   private bool _shouldBullStop;
   private NavMeshAgent _agent;
   private BullPhysicsController _bullPhysicsController;
+  private TopDownCarController _topDownCarController;
+  private float angle;
+  private Vector3 input;
+  public float turnFactor = 5;
+  public float rotationSpeed = 5;
 
   public AnimationCurve animationCurve;
   public AnimationCurve rotationCurve;
 
   private void Awake()
   {
+    angle = 0;
+    input = Vector3.zero;
     _shouldBullStop = false;
     _ballIsRunning = false;
-    _characterController = GetComponent<CharacterController>();
     _animator = GetComponent<Animator>();
-    // _agent = GetComponent<NavMeshAgent>();
+    _topDownCarController = GetComponent<TopDownCarController>();
     _bullPhysicsController = GetComponent<BullPhysicsController>();
     _rigidbody = GetComponent<Rigidbody>();
-    // _agent.updatePosition = false;
   }
 
   // Update is called once per frame
@@ -64,19 +63,13 @@ public class BullController : MonoBehaviour
     
     if (_ballIsRunning && !_shouldBullStop)
     {
-      // _agent.SetDestination(new Vector3(_ball.transform.position.x, 0 , _ball.transform.position.z));
-      
-      Vector3 desiredVelocity = new Vector3(-Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-      Debug.Log(desiredVelocity);
-      _bullPhysicsController.SetInputVector(desiredVelocity);
-      _agent.nextPosition = _rigidbody.transform.position;
-      
-      // Debug.Log("Bull desired velocity " + desiredVelocity);
-      // // _bullPhysicsController.SetInputVector(new Vector2(desiredVelocity.x, desiredVelocity.z));
-      //
-      // Vector3 nextPosition = desiredVelocity * (Time.deltaTime * 10);
-      // _rigidbody.MovePosition(transform.position + nextPosition);
-      // // transform.LookAt( _ball.transform.position);
+
+      Vector3 direction = _ball.transform.position - transform.position;
+      angle = Mathf.LerpAngle(angle, Vector3.SignedAngle(direction.normalized, transform.forward, Vector3.up), Time.deltaTime * rotationSpeed)%360; 
+      input.x = (-angle/360) * turnFactor; 
+      input.z = 1 * (180 - angle)/ 180;  
+      Debug.Log(input);
+      _topDownCarController.SetInputVector(new Vector2(input.x, input.z));
     }
   }
 
@@ -92,8 +85,9 @@ public class BullController : MonoBehaviour
 
   void StartChasingBall()
   {
-    _animator.applyRootMotion = true;
+    Debug.Log("Hola mundo");
     _ballIsRunning = true;
+    _animator.enabled = false;
   }
 
   private void OnTriggerEnter(Collider other)

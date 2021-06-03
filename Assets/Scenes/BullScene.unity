@@ -283,7 +283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clock1: {fileID: 539728913}
   clock2: {fileID: 1805656267}
-  clockRotationTime: 2
+  clockRotationTime: 0
   portalPoint: {fileID: 1388296099}
 --- !u!95 &524705093
 Animator:
@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68480d1fe102af043b9983516b553892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfPlayers: 2
+  numberOfPlayers: 5
   nextRoundWait: 2
   playerPrefab: {fileID: 7776248506089137287, guid: 6884f047ae4c2564ba863593346589dd,
     type: 3}

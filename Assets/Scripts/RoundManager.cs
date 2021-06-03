@@ -130,7 +130,7 @@ public class RoundManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToCreateBull);
     
-        _bullController = Instantiate(bullPrefab, new Vector3(0, -3, 0), Quaternion.identity).GetComponent<BullController>();
+        _bullController = Instantiate(bullPrefab, new Vector3(0, -1, 0), Quaternion.identity).GetComponent<BullController>();
         _bullController.FollowBall(ballMovement.gameObject);
     }
 }
