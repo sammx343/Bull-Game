@@ -7,7 +7,6 @@ public class TestRotation : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] 
     Transform pointer;
-
     private float angle;
     public float speed = 5;
     private Vector3 Vec;

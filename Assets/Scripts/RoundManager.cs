@@ -43,6 +43,7 @@ public class RoundManager : MonoBehaviour
         CreatePlayersInScene(PlayerControllers);
         AddDeadPlayerListener(PlayerControllers);
         
+        Debug.Log("Round starts");
         roundStarts?.Invoke(PlayerControllers);
     }
 

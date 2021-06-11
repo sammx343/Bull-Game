@@ -67,8 +67,7 @@ public class BullController : MonoBehaviour
       Vector3 direction = _ball.transform.position - transform.position;
       angle = Mathf.LerpAngle(angle, Vector3.SignedAngle(direction.normalized, transform.forward, Vector3.up), Time.deltaTime * rotationSpeed)%360; 
       input.x = (-angle/360) * turnFactor; 
-      input.z = 1 * (180 - angle)/ 180;  
-      Debug.Log(input);
+      input.z = 1 * (180 - angle)/ 180;
       _topDownCarController.SetInputVector(new Vector2(input.x, input.z));
     }
   }
@@ -85,7 +84,6 @@ public class BullController : MonoBehaviour
 
   void StartChasingBall()
   {
-    Debug.Log("Hola mundo");
     _ballIsRunning = true;
     _animator.enabled = false;
   }

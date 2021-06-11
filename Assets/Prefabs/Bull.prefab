@@ -178,9 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ball: {fileID: 0}
   _ballIsRunning: 0
-  bullRotationSpeed: 20
-  bullMovementSpeed: 15
-  turnFactor: 10
+  turnFactor: 20
   rotationSpeed: 5
   animationCurve:
     serializedVersion: 2
@@ -290,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   driftFactor: 0.95
   accelerationFactor: 30
-  turnFactor: 3.5
+  turnFactor: 5
   maxSpeed: 20
 --- !u!54 &4746028179608676902
 Rigidbody:

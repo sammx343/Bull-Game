@@ -16,10 +16,11 @@ public class UIRoundManager : MonoBehaviour
 
     List<GameObject> _playerScores = new List<GameObject>();
 
-    void Start()
+    void Awake()
     {
         _canvas = FindObjectsOfType<Canvas>().First( _canvas => _canvas.name == "MainCanvas" );
-        _roundManager = FindObjectOfType<RoundManager>();
+        _roundManager = GetComponent<RoundManager>();
+        if(_roundManager != null) Debug.Log("eche");
         _roundManager.roundStarts += CreatePlayerScore;
         
         if (panelRound != null)
@@ -31,6 +32,7 @@ public class UIRoundManager : MonoBehaviour
 
     void CreatePlayerScore(PlayerController[] playerControllers)
     {
+        Debug.Log("create players");
         DestroyAndClearScores();
         playerControllers = playerControllers
             .OrderBy( playerController => playerController.PlayerPoints)

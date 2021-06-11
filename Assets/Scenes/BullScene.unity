@@ -588,8 +588,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 740336237}
-  - component: {fileID: 740336236}
   - component: {fileID: 740336238}
+  - component: {fileID: 740336236}
   m_Layer: 0
   m_Name: RoundManager
   m_TagString: Untagged
